@@ -9,13 +9,13 @@ public class Car {
     private final String country;
 
     private String transmission;
-    private String bodeType;
+    private final String bodeType;
     private int registrationNumber;
-    private int numbersOfSeats;
-    private static boolean rubber = true;
-    public static int month = 2;
+    private final int numbersOfSeats;
+    private boolean rubber = true;
+    private Key key;
 
-    public Car(String Brand, String Model, double EngineVolume, String Color, int Year, String Country) {
+    public Car(String Brand, String Model, double EngineVolume, String Color, int Year, String Country, String Transmission, int RegistrationNumber, String bodeType, int numbersOfSeats, boolean Rubber, Key key) {
         this.brand = Brand;
         if (Brand == null || Brand.isEmpty()) {
             Brand = "default";
@@ -24,14 +24,8 @@ public class Car {
         if (Model == null || Model.isEmpty()) {
             Model = " default";
         }
-        this.engineVolume = EngineVolume;
-        if (EngineVolume <= 0) {
-            EngineVolume = 1.5;
-        }
-        this.color = Color;
-        if (Color == null || Color.isEmpty()) {
-            Color = "white";
-        }
+        setEngineVolume(engineVolume);
+        setColor(color);
         this.year = Year;
         if (Year <= 0) {
             Year = 2000;
@@ -40,62 +34,65 @@ public class Car {
         if (Country == null || Country.isEmpty()) {
             Country = "default";
         }
-    }
-
-
-    public Car(String Brand, String Model, double EngineVolume, String Color, int Year, String Country, String Transmission, int RegistrationNumber, String BodeType, int NumbersOfSeats, boolean Rubber) {
-        this.brand = Brand;
-        if (Brand == null || Brand.isEmpty()) {
-            Brand = "default";
+        setTransmission(transmission);
+        setRegistrationNumber();
+        if ((bodeType == null) || bodeType.isEmpty()) {
+            bodeType = " default";
         }
-        this.model = Model;
-        if (Model == null || Model.isEmpty()) {
-            Model = " default";
+        this.bodeType = bodeType;
+        if (numbersOfSeats <= 0) {
+            numbersOfSeats = 0;
         }
-        this.engineVolume = EngineVolume;
-        if (EngineVolume <= 0) {
-            EngineVolume = 1.5;
-        }
-        this.color = Color;
-        if (Color == null || Color.isEmpty()) {
-            Color = "white";
-        }
-        this.year = Year;
-        if (Year <= 0) {
-            Year = 2000;
-        }
-        this.country = Country;
-        if (Country == null || Country.isEmpty()) {
-            Country = "default";
-        }
-        this.transmission = Transmission;
-        if (transmission == null || transmission.isEmpty()) {
-            transmission = "default";
-        }
-        this.registrationNumber = RegistrationNumber;
-        this.bodeType = BodeType;
-        if (BodeType == null || BodeType.isEmpty()) {
-            BodeType = "default";
-        }
-        this.numbersOfSeats = NumbersOfSeats;
+        this.numbersOfSeats = numbersOfSeats;
         this.rubber = Rubber;
-        chekRubber(month);
+        setKey(key);
+
     }
 
+    public Key getKey() {
+        return key;
+    }
 
-    public static void chekRubber(int month) {
+    public void setKey(Key key) {
+        if (key == null) {
+            key = new Key(false, false);
+        }
+        this.key = key;
+    }
+
+    public static class Key {
+        private final boolean remoteEngineStart;
+        private final boolean keylessAccess;
+
+        public Key(boolean remoteEngineStart, boolean keylessAccess) {
+            this.remoteEngineStart = remoteEngineStart;
+            this.keylessAccess = keylessAccess;
+        }
+
+        public boolean isRemoteEngineStart() {
+            return remoteEngineStart;
+        }
+
+        public boolean isKeylessAccess() {
+            return keylessAccess;
+        }
+
+    }
+
+    public void chekRubber() {
+        int month = 2;
         switch (month) {
             case 1:
             case 2:
             case 12:
-                if (rubber = !true) {
+                if (getRubber() == !true) {
                     System.out.println(" Смени шины на сезонные! ");
                 }
                 break;
             case 6:
             case 7:
             case 8:
-                if (rubber = !false) {
+                if (getRubber() == !false) {
                     System.out.println(" Смени шины на сезонные! ");
                 }
                 break;
@@ -133,35 +130,40 @@ public class Car {
         return transmission;
     }
 
-    public String getBodeType() {
-        return bodeType;
-    }
 
     public int getRegistrationNumber() {
         return registrationNumber;
     }
 
-    public int getNumbersOfSeats() {
-        return numbersOfSeats;
-    }
 
-    public static boolean getRubber() {
+    public boolean getRubber() {
         return rubber;
     }
 
     public void setEngineVolume(double engineVolume) {
+        if (engineVolume <= 0) {
+            engineVolume = 1.5;
+        }
         this.engineVolume = engineVolume;
     }
 
     public void setColor(String color) {
-        this.color = color;
+        if (color == null || color.isEmpty()) {
+            color = "white";
+        }
     }
 
     public void setTransmission(String transmission) {
+        if (transmission == null || transmission.isEmpty()) {
+            transmission = "default";
+        }
         this.transmission = transmission;
     }
 
-    public void setRegistrationNumber(int registrationNumber) {
+    public void setRegistrationNumber() {
+        if (registrationNumber <= 0) {
+            registrationNumber = 2000;
+        }
         this.registrationNumber = registrationNumber;
     }
 
@@ -169,8 +171,26 @@ public class Car {
         this.rubber = rubber;
     }
 
+    public String getBodeType() {
+        return bodeType;
+    }
+
+    public int getNumbersOfSeats() {
+        return numbersOfSeats;
+    }
+
+    public void setRegistrationNumber(int registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
     public void print() {
-        System.out.println("Марка автомобиля:  " + getBrand() + ", модель: " + getModel() + ", объем двигателя: " + getEngineVolume() + "л, цвет кузова: " + getColor() + ", год выпуска: " + getYear() + ", произведен в стране:  " + getCountry() + ", коробка передач: " + getTransmission() + ", тип кузова: " + getBodeType() + ", регистрационный номер: " + getRegistrationNumber() + ", количество мест: " + getNumbersOfSeats() + ", зимние(true) / летние(false) шины:" + rubber);
+        System.out.println("Марка автомобиля:  " + getBrand() + ", модель: " + getModel() +
+                ", объем двигателя: " + getEngineVolume() + "л, цвет кузова: " + getColor() +
+                ", год выпуска: " + getYear() + ", произведен в стране:  " + getCountry() +
+                ", коробка передач: " + getTransmission() + ", тип кузова: " + getBodeType() +
+                ", регистрационный номер: " + getRegistrationNumber() +
+                ", количество мест: " + getNumbersOfSeats() +
+                ", шины:" + (rubber ? " зимняя" : " летняя") + " резина, " + (key.remoteEngineStart ? " удаленный запуск двигателя" : " не удаленный запуск двигателя") + ", " + (key.keylessAccess ? " безключевой доступ " : " клуючевой доступ "));
     }
 
 
