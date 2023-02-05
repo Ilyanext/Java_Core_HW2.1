@@ -3,38 +3,43 @@ package Transport;
 public class Car {
     private final String brand;
     private final String model;
-    private double engineVolume;
-    private String color;
+    private final String color;
     private final int year;
     private final String country;
-
-    private String transmission;
     private final String bodeType;
-    private int registrationNumber;
+    private boolean rubber;
+
     private final int numbersOfSeats;
-    private boolean rubber = true;
+    private String transmission;
+    private int registrationNumber;
+    private double engineVolume;
+
     private Key key;
 
-    public Car(String Brand, String Model, double EngineVolume, String Color, int Year, String Country, String Transmission, int RegistrationNumber, String bodeType, int numbersOfSeats, boolean Rubber, Key key) {
-        this.brand = Brand;
-        if (Brand == null || Brand.isEmpty()) {
-            Brand = "default";
+    public Car(String brand, String model, double engineVolume, String color, int year, String country, String transmission, int registrationNumber, String bodeType, int numbersOfSeats, boolean rubber, Key key) {
+        this.brand = brand;
+        if (brand == null || brand.isEmpty()) {
+            brand = "default";
         }
-        this.model = Model;
-        if (Model == null || Model.isEmpty()) {
-            Model = " default";
+        this.model = model;
+        if (model == null || model.isEmpty()) {
+            model = " default";
         }
-        setEngineVolume(engineVolume);
-        setColor(color);
-        this.year = Year;
-        if (Year <= 0) {
-            Year = 2000;
+        setEngineVolume(this.engineVolume);
+        this.color = color;
+        if (color == null || color.isEmpty()) {
+            color = " default";
         }
-        this.country = Country;
-        if (Country == null || Country.isEmpty()) {
-            Country = "default";
+
+        this.year = year;
+        if (year <= 0) {
+            year = 2000;
         }
-        setTransmission(transmission);
+        this.country = country;
+        if (country == null || country.isEmpty()) {
+            country = "default";
+        }
+        setTransmission(this.transmission);
         setRegistrationNumber();
         if ((bodeType == null) || bodeType.isEmpty()) {
             bodeType = " default";
@@ -44,7 +49,7 @@ public class Car {
             numbersOfSeats = 0;
         }
         this.numbersOfSeats = numbersOfSeats;
-        this.rubber = Rubber;
+        this.rubber = rubber;
         setKey(key);
 
     }
@@ -79,8 +84,8 @@ public class Car {
 
     }
 
-    public void chekRubber() {
-        int month = 2;
+    public void chekRubber(int month) {
+
         switch (month) {
             case 1:
             case 2:
@@ -145,12 +150,6 @@ public class Car {
             engineVolume = 1.5;
         }
         this.engineVolume = engineVolume;
-    }
-
-    public void setColor(String color) {
-        if (color == null || color.isEmpty()) {
-            color = "white";
-        }
     }
 
     public void setTransmission(String transmission) {

@@ -16,8 +16,8 @@ public class Main {
         kia.print();
         hyundai.print();
         hyundai1.print();
-        hyundai1.chekRubber();
-        hyundai.chekRubber();
+        hyundai1.chekRubber(2);
+        hyundai.chekRubber(2);
 
 
 
