@@ -1,5 +1,7 @@
 package Transport;
 
+import java.time.LocalDate;
+
 public class Car {
     private final String brand;
     private final String model;
@@ -17,40 +19,18 @@ public class Car {
     private Key key;
 
     public Car(String brand, String model, double engineVolume, String color, int year, String country, String transmission, int registrationNumber, String bodeType, int numbersOfSeats, boolean rubber, Key key) {
-        this.brand = brand;
-        if (brand == null || brand.isEmpty()) {
-            brand = "default";
-        }
-        this.model = model;
-        if (model == null || model.isEmpty()) {
-            model = " default";
-        }
+        this.brand = chekParmetrs(brand);
+        this.model = chekParmetrs(model);
         setEngineVolume(this.engineVolume);
-        this.color = color;
-        if (color == null || color.isEmpty()) {
-            color = " default";
-        }
-
-        this.year = year;
-        if (year <= 0) {
-            year = 2000;
-        }
-        this.country = country;
-        if (country == null || country.isEmpty()) {
-            country = "default";
-        }
+        this.color = chekParmetrs(color);
+        this.year = chekParmetrsDate(year);
+        this.country = chekParmetrs(country);
         setTransmission(this.transmission);
-        setRegistrationNumber();
-        if ((bodeType == null) || bodeType.isEmpty()) {
-            bodeType = " default";
-        }
-        this.bodeType = bodeType;
-        if (numbersOfSeats <= 0) {
-            numbersOfSeats = 0;
-        }
-        this.numbersOfSeats = numbersOfSeats;
+        setRegistrationNumber(this.registrationNumber);
+        this.bodeType = chekParmetrs(bodeType);
+        this.numbersOfSeats = chekParmetrsSitDown(numbersOfSeats);
         this.rubber = rubber;
-        setKey(key);
+        this.key = key;
 
     }
 
@@ -84,8 +64,30 @@ public class Car {
 
     }
 
-    public void chekRubber(int month) {
+    public String chekParmetrs(String parametr) {
+        if (parametr == null || parametr.isEmpty()) {
+            parametr = "default";
+        }
+        return parametr;
+    }
 
+    public int chekParmetrsDate(int parametr) {
+        if (parametr <= 0) {
+            parametr = 2000;
+        }
+        return parametr;
+    }
+
+    public int chekParmetrsSitDown(int parametr) {
+        if (parametr <= 0) {
+            parametr = 5;
+        }
+        return parametr;
+    }
+
+    public void chekRubber() {
+        int month = LocalDate.now().getMonthValue();
+        System.out.println(" Now month " + month);
         switch (month) {
             case 1:
             case 2:
@@ -103,7 +105,6 @@ public class Car {
                 break;
             default:
                 break;
-
         }
     }
 
