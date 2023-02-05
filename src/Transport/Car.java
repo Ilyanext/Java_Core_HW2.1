@@ -21,16 +21,16 @@ public class Car {
     public Car(String brand, String model, double engineVolume, String color, int year, String country, String transmission, int registrationNumber, String bodeType, int numbersOfSeats, boolean rubber, Key key) {
         this.brand = chekParmetrs(brand);
         this.model = chekParmetrs(model);
-        setEngineVolume(this.engineVolume);
+        setEngineVolume(engineVolume);
         this.color = chekParmetrs(color);
         this.year = chekParmetrsDate(year);
         this.country = chekParmetrs(country);
-        setTransmission(this.transmission);
-        setRegistrationNumber(this.registrationNumber);
+        setTransmission(transmission);
+        setRegistrationNumber(registrationNumber);
         this.bodeType = chekParmetrs(bodeType);
         this.numbersOfSeats = chekParmetrsSitDown(numbersOfSeats);
         this.rubber = rubber;
-        setKey(this.key);
+        setKey(key);
 
     }
 
@@ -161,7 +161,7 @@ public class Car {
     }
 
     public void setRegistrationNumber(int registrationNumber) {
-        if (registrationNumber <= 0) {
+        if (registrationNumber <= 0 || registrationNumber>999) {
             registrationNumber = 999;
         }
         this.registrationNumber = registrationNumber;
