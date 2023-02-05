@@ -8,7 +8,7 @@ public class Main {
         Car bmw = new Car(" BMW ", " Z8 ", 3.0, " black ", 2021, " Германия ","автомат",33,"hachback",5,true,new Car.Key(true,false) );
         Car kia = new Car(" Kia ", " Sportage 4 ", 2.4, " red ", 2018, " Южная Корея " ,"автомат",33,"hachback",5,true,new Car.Key(false,true));
         Car hyundai = new Car(" Hyundai ", " Avante ", 1.6, " red ", 2016, " Южная Корея " ,"механика",33,"hachback",5,false,new Car.Key(false,false));
-        Car hyundai1 = new Car(" Hyundai ", " Avante ", 1.6, " red ", 2016, " Южная Корея ", "автомат", 33, "hachback", 55, false,new Car.Key(true,true) );
+        Car hyundai1 = new Car(" Hyundai ", " Avante ", 1.6, " red ", 2016, " Южная Корея ", "автомат", 33, "hachback", 55, false,new Car.Key(true,false) );
 
         ladaGranta.print();
         audi.print();

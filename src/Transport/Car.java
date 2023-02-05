@@ -30,7 +30,7 @@ public class Car {
         this.bodeType = chekParmetrs(bodeType);
         this.numbersOfSeats = chekParmetrsSitDown(numbersOfSeats);
         this.rubber = rubber;
-        this.key = key;
+        setKey(this.key);
 
     }
 
@@ -160,9 +160,9 @@ public class Car {
         this.transmission = transmission;
     }
 
-    public void setRegistrationNumber() {
+    public void setRegistrationNumber(int registrationNumber) {
         if (registrationNumber <= 0) {
-            registrationNumber = 2000;
+            registrationNumber = 999;
         }
         this.registrationNumber = registrationNumber;
     }
@@ -179,10 +179,6 @@ public class Car {
         return numbersOfSeats;
     }
 
-    public void setRegistrationNumber(int registrationNumber) {
-        this.registrationNumber = registrationNumber;
-    }
-
     public void print() {
         System.out.println("Марка автомобиля:  " + getBrand() + ", модель: " + getModel() +
                 ", объем двигателя: " + getEngineVolume() + "л, цвет кузова: " + getColor() +
@@ -190,7 +186,7 @@ public class Car {
                 ", коробка передач: " + getTransmission() + ", тип кузова: " + getBodeType() +
                 ", регистрационный номер: " + getRegistrationNumber() +
                 ", количество мест: " + getNumbersOfSeats() +
-                ", шины:" + (rubber ? " зимняя" : " летняя") + " резина, " + (key.remoteEngineStart ? " удаленный запуск двигателя" : " не удаленный запуск двигателя") + ", " + (key.keylessAccess ? " безключевой доступ " : " клуючевой доступ "));
+                ", шины:" + (rubber ? " зимняя" : " летняя") + " резина, " + (key.remoteEngineStart ? " удаленный запуск двигателя" : " не удаленный запуск двигателя") + ", " + (key.keylessAccess ? " бесключевой доступ " : " клуючевой доступ "));
     }
 
 
