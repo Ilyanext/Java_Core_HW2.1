@@ -3,11 +3,6 @@ package Transport;
 import java.time.LocalDate;
 
 public class Car extends Transport {
-    //    private final String brand;
-//    private final String model;
-//    private final String color;
-//    private final int year;
-//    private final String country;
     private final String bodeType;
     private boolean rubber;
 
@@ -18,8 +13,8 @@ public class Car extends Transport {
 
     private Key key;
 
-    public Car(String brand, String model, double engineVolume, String color, int year, String country, String transmission, int registrationNumber, String bodeType, int numbersOfSeats, boolean rubber, Key key) {
-        super(brand, model, color, year, country);
+    public Car(String brand, String model, double engineVolume, String color, int year, String country, String transmission, int registrationNumber, String bodeType, int numbersOfSeats, boolean rubber, Key key, int speed) {
+        super(brand, model, color, year, country, speed);
         setEngineVolume(engineVolume);
         setTransmission(transmission);
         setRegistrationNumber(registrationNumber);
@@ -60,27 +55,12 @@ public class Car extends Transport {
 
     }
 
-//    public String chekParmetrs(String parametr) {
-//        if (parametr == null || parametr.isEmpty()) {
-//            parametr = "default";
-//        }
-//        return parametr;
-//    }
-
-//    public int chekParmetrsDate(int parametr) {
-//        if (parametr <= 0) {
-//            parametr = 2000;
-//        }
-//        return parametr;
-//    }
-
     public int chekParmetrsSitDown(int parametr) {
         if (parametr <= 0) {
             parametr = 5;
         }
         return parametr;
     }
-
     public void chekRubber() {
         int month = LocalDate.now().getMonthValue();
         System.out.println(" Now month " + month);
@@ -103,86 +83,55 @@ public class Car extends Transport {
                 break;
         }
     }
-
-//    public String getBrand() {
-//        return Transport.brand;
-//    }
-
-//    public String getModel() {
-//        return model;
-//    }
-
     public double getEngineVolume() {
         return engineVolume;
     }
-
-//    public String getColor() {
-//        return color;
-//    }
-
-//    public int getYear() {
-//        return year;
-//    }
-
-//    public String getCountry() {
-//        return country;
-//    }
-
     public String getTransmission() {
         return transmission;
     }
-
-
     public int getRegistrationNumber() {
         return registrationNumber;
     }
-
-
     public boolean getRubber() {
         return rubber;
     }
-
     public void setEngineVolume(double engineVolume) {
         if (engineVolume <= 0) {
             engineVolume = 1.5;
         }
         this.engineVolume = engineVolume;
     }
-
     public void setTransmission(String transmission) {
         if (transmission == null || transmission.isEmpty()) {
             transmission = "default";
         }
         this.transmission = transmission;
     }
-
     public void setRegistrationNumber(int registrationNumber) {
         if (registrationNumber <= 0 || registrationNumber > 999) {
             registrationNumber = 999;
         }
         this.registrationNumber = registrationNumber;
     }
-
     public void setRubber(boolean rubber) {
         this.rubber = rubber;
     }
-
     public String getBodeType() {
         return bodeType;
     }
-
     public int getNumbersOfSeats() {
         return numbersOfSeats;
     }
-
     public void print() {
         System.out.println("Марка автомобиля:  " + getBrand() + ", модель: " + getModel() +
-                ", объем двигателя: " + getEngineVolume() + "л, цвет кузова: " + getColor() +
-                ", год выпуска: " + getYear() + ", произведен в стране:  " + getCountry() +
-                ", коробка передач: " + getTransmission() + ", тип кузова: " + getBodeType() +
+                ", объем двигателя: " + getEngineVolume() + " л, цвет кузова: " + getColor() +
+                ", год выпуска: " + getYear() + ", произведен в стране:  " + getCountry()+ "\n" +
+                "коробка передач: " + getTransmission() + ", тип кузова: " + getBodeType() +
                 ", регистрационный номер: " + getRegistrationNumber() +
                 ", количество мест: " + getNumbersOfSeats() +
-                ", шины:" + (rubber ? " зимняя" : " летняя") + " резина, " + (key.remoteEngineStart ? " удаленный запуск двигателя" : " не удаленный запуск двигателя") + ", " + (key.keylessAccess ? " бесключевой доступ " : " клуючевой доступ "));
+                ", шины:" + (rubber ? " зимняя" : " летняя") + " резина, " + (key.remoteEngineStart ? " удаленный запуск двигателя" : " не удаленный запуск двигателя") +
+                ", " + (key.keylessAccess ? " бесключевой доступ " : " клуючевой доступ ")+ ", speed:  " + getSpeed());
+        System.out.println();
     }
 
 

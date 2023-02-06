@@ -1,5 +1,7 @@
 package Transport;
 
+import java.time.LocalDate;
+
 public class Transport {
     private String brand;
     private String model;
@@ -8,7 +10,7 @@ public class Transport {
     private final String country;
     private int speed;
 
-    Transport(String brand, String model, String color, int year, String country) {
+    Transport(String brand, String model, String color, int year, String country, int speed) {
         this.brand = chekParmetrs(brand);
         this.color = chekParmetrs(color);
 
@@ -25,18 +27,21 @@ public class Transport {
         }
         return parametr;
     }
-    public int chekParmetrsSpeed (int parametr) {
-        if (parametr <= 0 || parametr >=400) {
+
+    public int chekParmetrsSpeed(int parametr) {
+        if (parametr <= 0 || parametr >= 400) {
             parametr = 50;
         }
         return parametr;
     }
+
     public int chekParmetrsDate(int parametr) {
-        if (parametr <= 0) {
+        if (parametr <= 0 || parametr > 2023) {
             parametr = 2000;
         }
         return parametr;
     }
+
     public String getBrand() {
         return brand;
     }
@@ -67,5 +72,13 @@ public class Transport {
 
     public String getCountry() {
         return country;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 }
