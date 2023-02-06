@@ -2,12 +2,12 @@ package Transport;
 
 import java.time.LocalDate;
 
-public class Car {
-    private final String brand;
-    private final String model;
-    private final String color;
-    private final int year;
-    private final String country;
+public class Car extends Transport {
+    //    private final String brand;
+//    private final String model;
+//    private final String color;
+//    private final int year;
+//    private final String country;
     private final String bodeType;
     private boolean rubber;
 
@@ -19,12 +19,8 @@ public class Car {
     private Key key;
 
     public Car(String brand, String model, double engineVolume, String color, int year, String country, String transmission, int registrationNumber, String bodeType, int numbersOfSeats, boolean rubber, Key key) {
-        this.brand = chekParmetrs(brand);
-        this.model = chekParmetrs(model);
+        super(brand, model, color, year, country);
         setEngineVolume(engineVolume);
-        this.color = chekParmetrs(color);
-        this.year = chekParmetrsDate(year);
-        this.country = chekParmetrs(country);
         setTransmission(transmission);
         setRegistrationNumber(registrationNumber);
         this.bodeType = chekParmetrs(bodeType);
@@ -64,19 +60,19 @@ public class Car {
 
     }
 
-    public String chekParmetrs(String parametr) {
-        if (parametr == null || parametr.isEmpty()) {
-            parametr = "default";
-        }
-        return parametr;
-    }
+//    public String chekParmetrs(String parametr) {
+//        if (parametr == null || parametr.isEmpty()) {
+//            parametr = "default";
+//        }
+//        return parametr;
+//    }
 
-    public int chekParmetrsDate(int parametr) {
-        if (parametr <= 0) {
-            parametr = 2000;
-        }
-        return parametr;
-    }
+//    public int chekParmetrsDate(int parametr) {
+//        if (parametr <= 0) {
+//            parametr = 2000;
+//        }
+//        return parametr;
+//    }
 
     public int chekParmetrsSitDown(int parametr) {
         if (parametr <= 0) {
@@ -108,29 +104,29 @@ public class Car {
         }
     }
 
-    public String getBrand() {
-        return brand;
-    }
+//    public String getBrand() {
+//        return Transport.brand;
+//    }
 
-    public String getModel() {
-        return model;
-    }
+//    public String getModel() {
+//        return model;
+//    }
 
     public double getEngineVolume() {
         return engineVolume;
     }
 
-    public String getColor() {
-        return color;
-    }
+//    public String getColor() {
+//        return color;
+//    }
 
-    public int getYear() {
-        return year;
-    }
+//    public int getYear() {
+//        return year;
+//    }
 
-    public String getCountry() {
-        return country;
-    }
+//    public String getCountry() {
+//        return country;
+//    }
 
     public String getTransmission() {
         return transmission;
@@ -161,7 +157,7 @@ public class Car {
     }
 
     public void setRegistrationNumber(int registrationNumber) {
-        if (registrationNumber <= 0 || registrationNumber>999) {
+        if (registrationNumber <= 0 || registrationNumber > 999) {
             registrationNumber = 999;
         }
         this.registrationNumber = registrationNumber;
