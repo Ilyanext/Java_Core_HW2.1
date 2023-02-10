@@ -1,14 +1,17 @@
 package Transport;
 
-public abstract class Transport {
+public abstract class Transport <T extends Driver> {
     private String brand;
     private String model;
     private double engineVolume;
 
-    public Transport(String brand, String model, double engineVolume) {
+    private T driver;
+
+    public Transport(String brand, String model, double engineVolume,T driver ) {
         this.brand = chekParmetrs(brand);
         this.model = chekParmetrs(model);
         this.engineVolume = chekParmetrs(engineVolume);
+        setDriver(driver);
     }
 
     public void startMoving (){
@@ -18,6 +21,9 @@ public abstract class Transport {
         System.out.println("Stop moving");
     }
 
+    public void setDriver(T driver) {
+        this.driver = driver;
+    }
 
 //    private String color;
 //    private final int year;
@@ -48,6 +54,9 @@ public abstract class Transport {
         return parametr;
     }
 
+    public T getDriver() {
+        return driver;
+    }
 //    public int chekParmetrsSpeed(int parametr) {
 //        if (parametr <= 0 || parametr >= 400) {
 //            parametr = 50;

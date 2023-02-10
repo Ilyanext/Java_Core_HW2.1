@@ -1,8 +1,10 @@
 package Transport;
 
-public class Bus <DriverC> extends Transport implements Competing {
-    public Bus(String brand, String model, double engineVolume) {
-        super(brand, model, engineVolume);
+public class Bus  extends Transport <DriverC> implements Competing {
+
+
+    public Bus(String brand, String model, double engineVolume, DriverC driver) {
+        super(brand, model, engineVolume, driver);
     }
 
     @Override
