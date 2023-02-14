@@ -34,7 +34,7 @@ public class Main {
         Transport.Type.printType("BUS");
         Transport.Type.printType("TRUCKS");
         Transport.Type.printType("");
-        Transport.Type.printType("hgdfyh");
+        Transport.Type.printType("hgdfy");
 
 
     }
