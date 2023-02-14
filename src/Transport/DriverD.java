@@ -19,5 +19,4 @@ public class DriverD extends Driver implements Moving {
         System.out.println("Driver" + getFullName() + "refuel the car");
     }
 
-
 }

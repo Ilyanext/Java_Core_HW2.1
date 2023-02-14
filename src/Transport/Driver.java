@@ -26,12 +26,6 @@ public  abstract class Driver {
         }
         return anonim;
     }
-//    public String chekDriveCategoria(String anonim) {
-//        if (anonim.isEmpty() || anonim == null) {
-//            System.out.println("A");
-//        } else if (anonim == "B" || anonim == "C" || anonim == "D"){
-//        return anonim;
-//    }}
 
     public int chekDrive(int exp) {
         if (exp < 0) {

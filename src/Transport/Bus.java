@@ -1,10 +1,53 @@
 package Transport;
 
-public class Bus  extends Transport <DriverC> implements Competing {
+public class Bus extends Transport<DriverC> implements Competing {
 
 
     public Bus(String brand, String model, double engineVolume, DriverC driver) {
         super(brand, model, engineVolume, driver);
+    }
+
+    @Override
+    public void getType() {
+
+    }
+
+    public enum Places {
+        VERYSMOL(null, 10),
+        SMOL(null, 25),
+        MEDIUM(25, 50),
+        BIG(50, 80),
+        VERYBIG(80, 120);
+
+        private Integer miniPlaces;
+        private Integer maxPlaces;
+
+        Places(Integer miniPlaces, Integer maxPlaces) {
+            this.miniPlaces = miniPlaces;
+            this.maxPlaces = maxPlaces;
+        }
+
+        public Integer getMiniPlaces() {
+            return miniPlaces;
+        }
+
+        public void setMiniPlaces(Integer miniPlaces) {
+            this.miniPlaces = miniPlaces;
+        }
+
+        public Integer getMaxPlaces() {
+            return maxPlaces;
+        }
+
+        public void setMaxPlaces(Integer maxPlaces) {
+            this.maxPlaces = maxPlaces;
+        }
+
+        @Override
+        public String toString() {
+            return "Вместимость: " + (miniPlaces == null ? "" : "от " + miniPlaces) +
+                    ", " + (maxPlaces == null ? "" : " до " + maxPlaces);
+        }
     }
 
     @Override
@@ -28,14 +71,4 @@ public class Bus  extends Transport <DriverC> implements Competing {
                 ", объем двигателя: " + getEngineVolume()));
 
     }
-    //    public Bus(String brand, String model, String color, int year, String country, int speed) {
-//        super(brand, model, color, year, country, speed);
-//    }
-//
-//    public void print() {
-//        System.out.println("Марка автобуса:  " + getBrand() + ", модель: " + getModel() +
-//                ", " + "цвет кузова: " + getColor() +", год выпуска: " + getYear() +
-//                ", произведен в стране:  " + getCountry()+", speed:  "+ getSpeed() );
-//
-//    }
 }
