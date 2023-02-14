@@ -1,50 +1,26 @@
 package Transport;
 
-public class Car {
-    private final String brand;
-    private final String model;
-    private double engineVolume;
-    private String color;
-    private final int year;
-    private final String country;
+import java.time.LocalDate;
 
-    private String transmission;
+public class Car extends Transport {
     private final String bodeType;
-    private int registrationNumber;
+    private boolean rubber;
+
     private final int numbersOfSeats;
-    private boolean rubber = true;
+    private String transmission;
+    private int registrationNumber;
+    private double engineVolume;
+
     private Key key;
 
-    public Car(String Brand, String Model, double EngineVolume, String Color, int Year, String Country, String Transmission, int RegistrationNumber, String bodeType, int numbersOfSeats, boolean Rubber, Key key) {
-        this.brand = Brand;
-        if (Brand == null || Brand.isEmpty()) {
-            Brand = "default";
-        }
-        this.model = Model;
-        if (Model == null || Model.isEmpty()) {
-            Model = " default";
-        }
+    public Car(String brand, String model, double engineVolume, String color, int year, String country, String transmission, int registrationNumber, String bodeType, int numbersOfSeats, boolean rubber, Key key, int speed) {
+        super(brand, model, color, year, country, speed);
         setEngineVolume(engineVolume);
-        setColor(color);
-        this.year = Year;
-        if (Year <= 0) {
-            Year = 2000;
-        }
-        this.country = Country;
-        if (Country == null || Country.isEmpty()) {
-            Country = "default";
-        }
         setTransmission(transmission);
-        setRegistrationNumber();
-        if ((bodeType == null) || bodeType.isEmpty()) {
-            bodeType = " default";
-        }
-        this.bodeType = bodeType;
-        if (numbersOfSeats <= 0) {
-            numbersOfSeats = 0;
-        }
-        this.numbersOfSeats = numbersOfSeats;
-        this.rubber = Rubber;
+        setRegistrationNumber(registrationNumber);
+        this.bodeType = chekParmetrs(bodeType);
+        this.numbersOfSeats = chekParmetrsSitDown(numbersOfSeats);
+        this.rubber = rubber;
         setKey(key);
 
     }
@@ -79,8 +55,15 @@ public class Car {
 
     }
 
+    public int chekParmetrsSitDown(int parametr) {
+        if (parametr <= 0) {
+            parametr = 5;
+        }
+        return parametr;
+    }
     public void chekRubber() {
-        int month = 2;
+        int month = LocalDate.now().getMonthValue();
+        System.out.println(" Now month " + month);
         switch (month) {
             case 1:
             case 2:
@@ -98,99 +81,57 @@ public class Car {
                 break;
             default:
                 break;
-
         }
     }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
     public double getEngineVolume() {
         return engineVolume;
     }
-
-    public String getColor() {
-        return color;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
     public String getTransmission() {
         return transmission;
     }
-
-
     public int getRegistrationNumber() {
         return registrationNumber;
     }
-
-
     public boolean getRubber() {
         return rubber;
     }
-
     public void setEngineVolume(double engineVolume) {
         if (engineVolume <= 0) {
             engineVolume = 1.5;
         }
         this.engineVolume = engineVolume;
     }
-
-    public void setColor(String color) {
-        if (color == null || color.isEmpty()) {
-            color = "white";
-        }
-    }
-
     public void setTransmission(String transmission) {
         if (transmission == null || transmission.isEmpty()) {
             transmission = "default";
         }
         this.transmission = transmission;
     }
-
-    public void setRegistrationNumber() {
-        if (registrationNumber <= 0) {
-            registrationNumber = 2000;
+    public void setRegistrationNumber(int registrationNumber) {
+        if (registrationNumber <= 0 || registrationNumber > 999) {
+            registrationNumber = 999;
         }
         this.registrationNumber = registrationNumber;
     }
-
     public void setRubber(boolean rubber) {
         this.rubber = rubber;
     }
-
     public String getBodeType() {
         return bodeType;
     }
-
     public int getNumbersOfSeats() {
         return numbersOfSeats;
     }
-
-    public void setRegistrationNumber(int registrationNumber) {
-        this.registrationNumber = registrationNumber;
-    }
-
     public void print() {
         System.out.println("Марка автомобиля:  " + getBrand() + ", модель: " + getModel() +
-                ", объем двигателя: " + getEngineVolume() + "л, цвет кузова: " + getColor() +
-                ", год выпуска: " + getYear() + ", произведен в стране:  " + getCountry() +
-                ", коробка передач: " + getTransmission() + ", тип кузова: " + getBodeType() +
+                ", объем двигателя: " + getEngineVolume() + " л, цвет кузова: " + getColor() +
+                ", год выпуска: " + getYear() + ", произведен в стране:  " + getCountry()+ "\n" +
+                "коробка передач: " + getTransmission() + ", тип кузова: " + getBodeType() +
                 ", регистрационный номер: " + getRegistrationNumber() +
                 ", количество мест: " + getNumbersOfSeats() +
-                ", шины:" + (rubber ? " зимняя" : " летняя") + " резина, " + (key.remoteEngineStart ? " удаленный запуск двигателя" : " не удаленный запуск двигателя") + ", " + (key.keylessAccess ? " безключевой доступ " : " клуючевой доступ "));
+                ", шины:" + (rubber ? " зимняя" : " летняя") + " резина, " + (key.remoteEngineStart ? " удаленный запуск двигателя" : " не удаленный запуск двигателя") +
+                ", " + (key.keylessAccess ? " бесключевой доступ " : " клуючевой доступ ")+ ", speed:  " + getSpeed());
+        System.out.println();
     }
 
 
