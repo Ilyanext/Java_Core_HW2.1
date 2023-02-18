@@ -1,47 +1,26 @@
 package Transport;
 
-public abstract class Transport<T extends Driver> implements GetType {
-    private String brand;
-    private String model;
-    private double engineVolume;
+public abstract class Transport<T extends Driver> {
+    private static String brand;
+    private static String model;
+    private static double engineVolume;
+    private Type Type;
 
     private T driver;
+    private Type type;
 
     public Transport(String brand, String model, double engineVolume, T driver) {
         this.brand = chekParmetrs(brand);
         this.model = chekParmetrs(model);
         this.engineVolume = chekParmetrs(engineVolume);
         setDriver(driver);
-    }
-
-    public enum Type implements GetType {
-        PASSENGERCARS,
-        BUS,
-        TRUCKS,
-        DEFAULT;
-
-        @Override
-        public void getType() {
-        }
-
-        public static Transport.Type printType(String name) {
-            switch (name) {
-                case "PASSENGERCARS":
-                    System.out.println(Type.valueOf("PASSENGERCARS"));
-                    break;
-                case "BUS":
-                    System.out.println(Type.valueOf("BUS"));
-                    break;
-                case "TRUCKS":
-                    System.out.println(Type.valueOf("TRUCKS"));
-                    break;
-                default:
-                    System.out.println("Данных по трансортному средству недостаточно.");
-            }
-            return null;
-        }
+        this.Type = type;
 
     }
+
+    public abstract Type getType();
+
+    public abstract void printType();
 
     public void startMoving() {
         System.out.println("Start moving");
@@ -73,7 +52,7 @@ public abstract class Transport<T extends Driver> implements GetType {
         return driver;
     }
 
-    public String getBrand() {
+    public static String getBrand() {
         return brand;
     }
 
@@ -81,7 +60,7 @@ public abstract class Transport<T extends Driver> implements GetType {
         this.brand = brand;
     }
 
-    public String getModel() {
+    public static String getModel() {
         return model;
     }
 
@@ -89,8 +68,12 @@ public abstract class Transport<T extends Driver> implements GetType {
         this.model = model;
     }
 
-    public double getEngineVolume() {
+    public static double getEngineVolume() {
         return engineVolume;
+    }
+
+    public void diagnistic() {
+
     }
 
     public void setEngineVolume(double engineVolume) {

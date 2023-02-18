@@ -2,14 +2,27 @@ package Transport;
 
 public class Bus extends Transport<DriverC> implements Competing {
 
-
-    public Bus(String brand, String model, double engineVolume, DriverC driver) {
+private Places places;
+    public Bus(String brand, String model, double engineVolume, DriverC driver, Places places) {
         super(brand, model, engineVolume, driver);
+        this.places = places;
+    }
+
+    public Places getPlaces() {
+        return places;
     }
 
     @Override
-    public void getType() {
+    public Type getType(){
+        return Type.BUS;
+    }
 
+    @Override
+    public void printType() {
+        if (getPlaces() == null){
+            System.out.println("Недостаточно данных по машине");
+        } else
+            System.out.println(getPlaces());
     }
 
     public enum Places {

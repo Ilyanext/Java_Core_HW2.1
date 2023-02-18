@@ -3,16 +3,31 @@ package Transport;
 public class PassengerCars extends Transport<DriverB> implements Competing {
 
 
-    public PassengerCars(String brand, String model, double engineVolume, DriverB driver) {
+    private BodyType bodyType;
+
+    public PassengerCars(String brand, String model, double engineVolume, DriverB driver, BodyType bodytype) {
         super(brand, model, engineVolume, driver);
+        this.bodyType= bodytype;
     }
 
     @Override
-    public void getType() {
-
+    public Type getType() {
+        return Type.PASSENGERCARS;
     }
 
-    public enum Body {
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+
+    @Override
+    public void printType() {
+        if (getBodyType() == null){
+            System.out.println("Недостаточно данных по машине");
+        } else
+            System.out.println(getBodyType());
+    }
+
+    public enum BodyType {
         SEDAN("Седан"),
         HETCHBEK("Хетчбэк"),
         KUPE("Купе"),
@@ -23,26 +38,25 @@ public class PassengerCars extends Transport<DriverB> implements Competing {
         FURGON("Фургон"),
         MINIVEN("Минивэн");
 
-        private String bodyName;
+        private String bodyType;
 
-        Body(String bodyName) {
-            this.bodyName = bodyName;
+        BodyType(String bodyName) {
+            this.bodyType = bodyName;
         }
 
-        public String getBodyName() {
-            return bodyName;
+        public String getBodyType() {
+            return bodyType;
         }
 
-        public void setBodyName(String bodyName) {
-            this.bodyName = bodyName;
+        public void setBodyType(String bodyType) {
+            this.bodyType = bodyType;
         }
 
         @Override
         public String toString() {
-            return "Тип кузова: " + bodyName;
+            return "Тип кузова: " + getBodyType();
         }
     }
-
 
     @Override
     public void pitStopabl() {
@@ -65,11 +79,5 @@ public class PassengerCars extends Transport<DriverB> implements Competing {
                 ", объем двигателя: " + getEngineVolume()));
     }
 
-
-//    public static void bodeNameCar(){
-//        for (Body body: Body.values()) {
-//            System.out.println("Тип кузова: " + body.getBodyName());
-//        }
-//    }
 }
 

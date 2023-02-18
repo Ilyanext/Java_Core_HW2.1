@@ -2,14 +2,27 @@ package Transport;
 
 public class Trucks extends Transport<DriverD> implements Competing {
 
-
-    public Trucks(String brand, String model, double engineVolume, DriverD driver) {
+private LoadCapacity loadCapacity;
+    public Trucks(String brand, String model, double engineVolume, DriverD driver, LoadCapacity loadCapacity) {
         super(brand, model, engineVolume, driver);
+        this.loadCapacity=loadCapacity;
+    }
+
+    public LoadCapacity getLoadCapacity() {
+        return loadCapacity;
     }
 
     @Override
-    public void getType() {
+    public Type getType() {
+        return Type.TRUCKS;
+    }
 
+    @Override
+    public void printType() {
+    if(getLoadCapacity()==null){
+        System.out.println("Недостаточно данных по машине");
+    } else
+        System.out.println(getLoadCapacity());
     }
 
     public enum LoadCapacity {
@@ -70,9 +83,4 @@ public class Trucks extends Transport<DriverD> implements Competing {
 
     }
 
-//    public static void capacityNumber() {
-//        for (LoadCapacity capacity : LoadCapacity.values()) {
-//            System.out.println("Грузоподъемность: " + (capacity.getMincapacity() == 0 ? "" : "от " + capacity.getMincapacity()) + (capacity.getMaxcapacity() == 0 ? "" : " до " + capacity.getMaxcapacity()));
-//        }
-//    }
 }
