@@ -31,7 +31,7 @@ public abstract class Transport<T extends Driver> {
         return true;
     }
 
-    abstract boolean passDiagnostics();
+    abstract boolean passDiagnostics() throws TransportTypeException;
 
     public void startMoving() {
         System.out.println("Start moving");

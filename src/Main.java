@@ -5,7 +5,7 @@ import Transport.Trucks.*;
 import Transport.PassengerCars.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TransportTypeException {
 
         DriverB oleg = new DriverB("Oleg Pahov", true, 20);
         DriverC ura = new DriverC("Ura Pahov", false, 10);
