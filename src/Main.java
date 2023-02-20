@@ -3,8 +3,9 @@ import Transport.*;
 import Transport.Bus.*;
 import Transport.Trucks.*;
 import Transport.PassengerCars.*;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TransportTypeException {
 
         DriverB oleg = new DriverB("Oleg Pahov", true, 20);
         DriverC ura = new DriverC("Ura Pahov", false, 10);
@@ -18,11 +19,11 @@ public class Main {
         PassengerCars carMers = new PassengerCars("Mers", "yu-43", 1.1, oleg, BodyType.KUPE);
         PassengerCars carAudi = new PassengerCars("Audi", "tt-1", 1, oleg, BodyType.HETCHBEK);
         PassengerCars carRonol = new PassengerCars("Ronol", "rA-67", 6, oleg, BodyType.PICAP);
-        PassengerCars carMex = new PassengerCars("Mex", "dr-3", 4.4, oleg,BodyType.UNIVERSAL);
+        PassengerCars carMex = new PassengerCars("Mex", "dr-3", 4.4, oleg, BodyType.UNIVERSAL);
 
-        Trucks truckMers = new Trucks("Mers", "456s", 4.3, dim,LoadCapacity.N1);
+        Trucks truckMers = new Trucks("Mers", "456s", 4.3, dim, LoadCapacity.N1);
         Trucks truckAudi = new Trucks("Audi", "444l", 0.9, dim, LoadCapacity.N3);
-        Trucks truckRonol = new Trucks("Ronol", "787yu", 2.7, dim,LoadCapacity.N2);
+        Trucks truckRonol = new Trucks("Ronol", "787yu", 2.7, dim, LoadCapacity.N2);
         Trucks truckMex = new Trucks("Mex", "33h", 3.4, dim, LoadCapacity.N3);
 
         System.out.println(BodyType.CROSSOVER);
@@ -32,10 +33,10 @@ public class Main {
 
         carAudi.printType();
         truckAudi.printType();
-
-
-
-
+        System.out.println();
+        carMers.passDiagnostics();
+        truckMex.passDiagnostics();
+        busMex.passDiagnostics();
 
     }
 }

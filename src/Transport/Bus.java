@@ -2,7 +2,8 @@ package Transport;
 
 public class Bus extends Transport<DriverC> implements Competing {
 
-private Places places;
+    private Places places;
+
     public Bus(String brand, String model, double engineVolume, DriverC driver, Places places) {
         super(brand, model, engineVolume, driver);
         this.places = places;
@@ -13,16 +14,21 @@ private Places places;
     }
 
     @Override
-    public Type getType(){
+    public Type getType() {
         return Type.BUS;
     }
 
     @Override
     public void printType() {
-        if (getPlaces() == null){
+        if (getPlaces() == null) {
             System.out.println("Недостаточно данных по машине");
         } else
             System.out.println(getPlaces());
+    }
+
+    @Override
+    public boolean passDiagnostics() throws TransportTypeException {
+        throw new TransportTypeException("Автобусы не должны проходить диагностику!");
     }
 
     public enum Places {
@@ -77,6 +83,7 @@ private Places places;
     public void maxSpeedaml() {
         System.out.println(" Максимальная скорость: 234 км/ч ");
     }
+
 
     @Override
     public void print() {

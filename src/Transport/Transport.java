@@ -22,6 +22,17 @@ public abstract class Transport<T extends Driver> {
 
     public abstract void printType();
 
+    public boolean chekPassDiagnostics() {
+        try {
+            passDiagnostics();
+        } catch (TransportTypeException e) {
+            return false;
+        }
+        return true;
+    }
+
+    abstract boolean passDiagnostics() throws TransportTypeException;
+
     public void startMoving() {
         System.out.println("Start moving");
     }
@@ -70,10 +81,6 @@ public abstract class Transport<T extends Driver> {
 
     public static double getEngineVolume() {
         return engineVolume;
-    }
-
-    public void diagnistic() {
-
     }
 
     public void setEngineVolume(double engineVolume) {

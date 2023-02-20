@@ -7,7 +7,7 @@ public class PassengerCars extends Transport<DriverB> implements Competing {
 
     public PassengerCars(String brand, String model, double engineVolume, DriverB driver, BodyType bodytype) {
         super(brand, model, engineVolume, driver);
-        this.bodyType= bodytype;
+        this.bodyType = bodytype;
     }
 
     @Override
@@ -21,10 +21,16 @@ public class PassengerCars extends Transport<DriverB> implements Competing {
 
     @Override
     public void printType() {
-        if (getBodyType() == null){
+        if (getBodyType() == null) {
             System.out.println("Недостаточно данных по машине");
         } else
             System.out.println(getBodyType());
+    }
+
+    @Override
+    public boolean passDiagnostics() {
+        System.out.println("Машина может пройти диагностику");
+        return false;
     }
 
     public enum BodyType {

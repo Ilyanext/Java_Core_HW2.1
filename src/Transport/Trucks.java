@@ -25,6 +25,12 @@ private LoadCapacity loadCapacity;
         System.out.println(getLoadCapacity());
     }
 
+    @Override
+    public boolean passDiagnostics() {
+        System.out.println("Машина может пройти диагностику");
+        return false;
+    }
+
     public enum LoadCapacity {
         N1(0, 3.5F),
         N2(3.5F, 12),
